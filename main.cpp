@@ -178,7 +178,11 @@ int main(int argc, char *argv[])
 
   #endif
 
-  m.SaveOBJ(params.remesh_output_name);
+  if (params.remesh_output_name != "none"){
+    m.Recover(bbox);
+    m.SaveOBJ(params.remesh_output_name);
+    return 0;
+  }
 
   if (params.pca)
     rot = m.PCA();

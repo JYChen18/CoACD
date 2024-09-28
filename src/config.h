@@ -49,7 +49,7 @@ namespace coacd
     {
       input_model = "../model.obj";
       output_name = "../output.obj";
-      remesh_output_name = "../remesh.obj";
+      remesh_output_name = "none";
       mcts_nodes = 20;
       threshold = 0.05;
       resolution = 2000;
