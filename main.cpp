@@ -192,9 +192,9 @@ int main(int argc, char *argv[])
   RecoverParts(parts, bbox, rot, params);
 
   string objName = regex_replace(params.output_name, regex("wrl"), "obj");
-  string wrlName = regex_replace(params.output_name, regex("obj"), "wrl");
+  // string wrlName = regex_replace(params.output_name, regex("obj"), "wrl");
 
-  SaveVRML(wrlName, parts, params);
+  // SaveVRML(wrlName, parts, params);
   SaveOBJ(objName, parts, params);
 
   return 0;
