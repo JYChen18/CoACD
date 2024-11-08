@@ -23,9 +23,12 @@ namespace coacd
     /////////////// Basic Config ///////////////
     string input_model;
     string output_name;
+    string part_output_folder_path_name;
+    string part_output_file_name;
     string remesh_output_name;
     int mcts_nodes;
     double threshold;
+    double min_meshvolume;
     unsigned int resolution;
     unsigned int seed;
     double rv_k;
@@ -49,9 +52,12 @@ namespace coacd
     {
       input_model = "../model.obj";
       output_name = "../output.obj";
+      part_output_folder_path_name = "../parts";
+      part_output_file_name = "convex_piece";
       remesh_output_name = "none";
       mcts_nodes = 20;
       threshold = 0.05;
+      min_meshvolume = 1e-7;
       resolution = 2000;
       seed = 1234;
       rv_k = 0.3;

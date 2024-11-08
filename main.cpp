@@ -34,9 +34,21 @@ int main(int argc, char *argv[])
       {
         params.output_name = argv[i + 1];
       }
+      if (strcmp(argv[i], "-pf") == 0 || strcmp(argv[i], "--part-output-folder") == 0)
+      {
+        params.part_output_folder_path_name = argv[i + 1];
+      }
+      if (strcmp(argv[i], "-pn") == 0 || strcmp(argv[i], "--part-output-file") == 0)
+      {
+        params.part_output_file_name = argv[i + 1];
+      }
       if (strcmp(argv[i], "-ro") == 0 || strcmp(argv[i], "--remesh-output") == 0)
       {
         params.remesh_output_name = argv[i + 1];
+      }
+      if (strcmp(argv[i], "-mv") == 0 || strcmp(argv[i], "--min-mesh-volume") == 0)
+      {
+        sscanf(argv[i + 1], "%le", &params.min_meshvolume);
       }
       if (strcmp(argv[i], "-k") == 0)
       {
@@ -189,12 +201,15 @@ int main(int argc, char *argv[])
 
   vector<Model> parts = Compute(m, params);
 
+  parts = FilterOutParts(parts, params);
+
   RecoverParts(parts, bbox, rot, params);
 
   string objName = regex_replace(params.output_name, regex("wrl"), "obj");
   // string wrlName = regex_replace(params.output_name, regex("obj"), "wrl");
 
   // SaveVRML(wrlName, parts, params);
+  SaveOBJs(params.part_output_folder_path_name, params.part_output_file_name, parts, params);
   SaveOBJ(objName, parts, params);
 
   return 0;

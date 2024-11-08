@@ -726,4 +726,16 @@ namespace coacd
             meshes[i].Recover(bbox);
         }
     }
+
+    vector<Model> FilterOutParts(vector<Model> &meshes, Params &params)
+    {
+        vector<Model> new_meshes;
+        for (int i = 0; i < (int)meshes.size(); i++)
+        {
+            if (MeshVolume(meshes[i]) > params.min_meshvolume)
+                new_meshes.push_back(meshes[i]);
+        }
+        return new_meshes;
+    }
+
 }
